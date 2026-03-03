@@ -85,8 +85,8 @@ class Turismo(Vehiculo):
         Devuelve una representación legible del turismo
         """
         info_padre = super().__str__()
-        return (f"{info_padre}, "
-                f"puertas: {self.puertas}, "
-                f"combustible: {self.combustible}, "
-                f"estado: {self.estado}, "
-                f"plazas: {self.plazas}")
+        return (f"{info_padre}"
+                f"Puertas: {self.puertas}"
+                f"Combustible: {self.combustible}"
+                f"Estado: {self.estado}"
+                f"Plazas: {self.plazas}")

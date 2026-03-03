@@ -28,7 +28,7 @@ class Persona:
         -------------
         __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento: str, codigo_postal: int, telefono: int) -> None:
             Constructor del objeto.
-        """
+    """
 
     def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento: str, codigo_postal: int, telefono: int):
         """
@@ -73,7 +73,14 @@ class Persona:
         return self._telefono
 
     def __str__(self):
-        return f'Nombre: {self.nombre}, Dni: {self.dni}, Gmail: {self.gmail} , DNI: {self.dni}, Fecha nacimiento: {self._fecha_nacimiento}, Código postal: {self._codigo_postal}, Telefono: {self.telefono}'
+        return (f'Nombre: {self.nombre},'
+                f'Dni: {self.dni}, '
+                f'Gmail: {self.gmail}, '
+                f'DNI: {self.dni}, '
+                f'Fecha nacimiento: {self._fecha_nacimiento}, '
+                f'Código postal: {self._codigo_postal}, '
+                f'Telefono: {self.telefono}')
+
 
 
 p = Persona('a','a','a','a',1,1)

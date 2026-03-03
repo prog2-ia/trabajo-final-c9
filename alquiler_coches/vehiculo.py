@@ -1,8 +1,9 @@
 #Atributos: matricula, marca, modelo, precio_dia, disponible (booleano), color
 #Métodos: alquilar(), devolver(), mostrar_info()
 #Debería de ser abstracta(COMENTAR CON MARIA)
+from abc import ABC
 
-class Vehiculo:
+class Vehiculo(ABC):
     """
         Clase Vehiculo
             Representa un vehículo que puede ser alquilado dentro del sistema.
@@ -166,4 +167,9 @@ class Vehiculo:
         Devuelve una representación legible del vehículo
         """
         estado = "Disponible" if self.disponible else "Alquilado"
-        return f"Matrícula: {self.matricula}, marca: {self.marca}, modelo: {self.modelo}, precio al día: {self.precio_dia}, disponible: {estado}, color: {self.color}"
+        return (f"Matrícula: {self.matricula}"
+                f"Marca: {self.marca}"
+                f"Modelo: {self.modelo}"
+                f"Precio al día: {self.precio_dia}"
+                f"Disponible: {estado}"
+                f"Color: {self.color}")

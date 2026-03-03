@@ -106,4 +106,7 @@ class Seguro:
         """
         Devuelve una representación legible del seguro
         """
-        return f"Tipo de seguro: {self.tipo_seguro}, precio al día: {self.precio_dia}, cobertura: {self._cobertura}"
+        return (f"Tipo de seguro: {self.tipo_seguro}"
+                f"Precio al día: {self.precio_dia}"
+                f"Cobertura: {self._cobertura}")
+
