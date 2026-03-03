@@ -1,8 +1,9 @@
 #Atributos: nombre, dni, telefono, codigo_postal, email, fecha_nacimiento 
 #Métodos: mostra_info()
 
-
-class Persona:
+#Debería de ser abstracta(COMENTAR CON VICTORIA)
+from abc import ABC
+class Persona(ABC):
     """
         Clase Persona
             Cubre lo básico de cualquier persona.
@@ -73,12 +74,12 @@ class Persona:
         return self._telefono
 
     def __str__(self):
-        return (f'Nombre: {self.nombre},'
-                f'Dni: {self.dni}, '
-                f'Gmail: {self.gmail}, '
-                f'DNI: {self.dni}, '
-                f'Fecha nacimiento: {self._fecha_nacimiento}, '
-                f'Código postal: {self._codigo_postal}, '
+        return (f'Nombre: {self.nombre}'
+                f'Dni: {self.dni}'
+                f'Gmail: {self.gmail}'
+                f'DNI: {self.dni}'
+                f'Fecha nacimiento: {self._fecha_nacimiento}'
+                f'Código postal: {self._codigo_postal}'
                 f'Telefono: {self.telefono}')
 
 

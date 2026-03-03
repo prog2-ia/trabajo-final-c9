@@ -171,5 +171,5 @@ class Vehiculo(ABC):
                 f"Marca: {self.marca}"
                 f"Modelo: {self.modelo}"
                 f"Precio al día: {self.precio_dia}"
-                f"Disponible: {estado}"
+                f"Estado: {estado}"
                 f"Color: {self.color}")
