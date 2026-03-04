@@ -2,6 +2,8 @@
 #Métodos: alquilar(), devolver(), mostrar_info()
 #Debería de ser abstracta(COMENTAR CON MARIA)
 from abc import ABC
+from tarifa import Tarifa
+
 
 class Vehiculo(ABC):
     """
@@ -17,8 +19,8 @@ class Vehiculo(ABC):
             Marca del vehículo
         modelo: str
             Modelo del vehículo
-        precio_dia: float
-            Coste diario de alquiler del vehículo
+        tarifa: float
+            Objeto de la clase Tarifa
         color: str
             Color del vehículo
         disponible: bool
@@ -39,7 +41,7 @@ class Vehiculo(ABC):
             Devuelve la información del vehículo en formato legible
     """
 
-    def __init__(self, matricula: str, marca: str, modelo: str, precio_dia: float, color: str):
+    def __init__(self, matricula: str, marca: str, modelo: str, tarifa: Tarifa, color: str):
         """
         Metodo constructor
 
@@ -51,15 +53,15 @@ class Vehiculo(ABC):
             Marca del vehículo
         modelo: str
             Modelo del vehículo
-        precio_dia: float
-            Precio diario del alquiler (mayor que 0)
+        tarifa: Tarifa
+            Tarifa del coche a alquilar
         color: str
             Color del vehículo
         """
         self.matricula = matricula
         self.marca = marca
         self.modelo = modelo
-        self.precio_dia = precio_dia
+        self.tarifa = tarifa
         self.color = color
         self._disponible = True
 
@@ -103,17 +105,17 @@ class Vehiculo(ABC):
         self._modelo = nuevo.strip()
 
     @property
-    def precio_dia(self):
-        return self._precio_dia
+    def tarifa(self):
+        return self._tarifa
 
-    @precio_dia.setter
-    def precio_dia(self, nuevo):
+    @tarifa.setter
+    def tarifa(self, nueva_tarifa: Tarifa):
         """
-        Establece el precio diario validando que sea positivo
+        Establece que la tarifa obtenida ser un objeto de la clase Tarifa
         """
-        if not isinstance(nuevo, (int, float)) or nuevo <= 0:
-            raise ValueError("El precio por día debe ser positivo")
-        self._precio_dia = float(nuevo)
+        if not isinstance(nueva_tarifa, Tarifa):
+            raise ValueError("Debe ser una instancia de Tarifa")
+        self._tarifa = nueva_tarifa
 
     @property
     def color(self):
@@ -170,6 +172,6 @@ class Vehiculo(ABC):
         return (f"Matrícula: {self.matricula}"
                 f"Marca: {self.marca}"
                 f"Modelo: {self.modelo}"
-                f"Precio al día: {self.precio_dia}"
                 f"Estado: {estado}"
-                f"Color: {self.color}")
+                f"Color: {self.color}"
+                f"{self.tarifa}")

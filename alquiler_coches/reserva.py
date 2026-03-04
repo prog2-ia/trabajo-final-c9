@@ -2,3 +2,5 @@
 #Atributos: cliente, vehículo, días, activa(True/False)
 #Métodos: confirmar(), cancelar()
 
+class Reserva:
+    
