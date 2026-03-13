@@ -23,7 +23,7 @@ class Tarifa:
 
         calcular_precio(self, dias: int, kilometros: int, retraso=False) -> float
             Calcula el precio total del alquiler del vehiculo
-        """
+    """
 
     def __init__(self, precio_base: float, precio_km: float, penalizacion_retraso: float):
         self.precio_base = precio_base
