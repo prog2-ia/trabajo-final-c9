@@ -1,3 +1,4 @@
+from alquiler_coches.sistema_alquiler import SistemaAlquiler
 from cliente import Cliente
 from turismo import Turismo
 from tarifa import Tarifa
@@ -5,7 +6,32 @@ from reserva import Reserva
 from seguro import Seguro
 from alquiler import Alquiler
 from factura import Factura
+from sistema_alquiler import SistemaAlquiler
 from datetime import date
+
+
+
+def main():
+    sistema = SistemaAlquiler()
+
+    while True:
+        print("\n--- MENÚ ---")
+        print("1. Registrar cliente")
+        print("2. Añadir vehículo")
+        print("3. Eliminar vehiculo")
+        print("4. Crear reserva")
+        print("5. Cancelar reserva")
+        print("6. Iniciar alquiler")
+        print("7. Finalizar alquiler")
+        print("8. Ver vehiculos disponibles")
+        print("9. Ver inventario")
+        print("10. Ver reservas")
+        print("11. Ver clientes")
+        print("12. Salir")
+
+        opcion = input("Elige una opción: ")
+
+        if opcion == "1":
 
 
 def main():

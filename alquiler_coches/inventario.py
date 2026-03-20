@@ -70,7 +70,7 @@ class Inventario:
                 vehiculos_disponibles.append(vehiculo)
         return vehiculos_disponibles
 
-    def buscar_por_matriculs(self, matricula):
+    def buscar_por_matricula(self, matricula):
         vehiculo_encontrado = None
         for vehiculo in self._vehiculos:
             if vehiculo.matricula == matricula:
@@ -80,7 +80,10 @@ class Inventario:
         if vehiculo_encontrado is not None:
             return vehiculo_encontrado
 
-        return False
+        return None
+
+
+
 
 
 
