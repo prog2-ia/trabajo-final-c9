@@ -1,5 +1,3 @@
-#Atributos: tipo_seguro, precio_dia, cobertura(características del seguro)
-#Métodos: calcular_precio(dias), mostrar_info()
 class Seguro:
     """
         Clase Seguro
@@ -103,10 +101,8 @@ class Seguro:
         return self.precio_dia * dias
 
     def __str__(self):
-        """
-        Devuelve una representación legible del seguro
-        """
-        return (f"Tipo de seguro: {self.tipo_seguro}"
-                f"Precio al día: {self.precio_dia}"
-                f"Cobertura: {self._cobertura}")
+        return (f"--- SEGURO ---\n"
+                f"Tipo: {self.tipo_seguro}\n"
+                f"Precio/día: {self.precio_dia}\n"
+                f"Cobertura: {self._cobertura}\n")
 

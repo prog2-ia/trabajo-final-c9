@@ -1,6 +1,3 @@
-#Atributos: puertas, combustible, estado, color, plazas (hereda de Vehiculo)
-#Métodos: usa los de Vehiculo, mostrar_info()
-
 from vehiculo import Vehiculo
 
 class Turismo(Vehiculo):

@@ -33,7 +33,7 @@ class Reserva:
         cancelae_reserva(self):
             Cancelamos la reserva y indicamos el atributo ativa como falso
 
-        durcion(self):
+        duracion(self):
             Indica la duración total de la reserva en días
     """
     def __init__(self, cliente: Cliente, vehiculo: Vehiculo, fecha_inicio: date, fecha_fin: date):
@@ -119,17 +119,17 @@ class Reserva:
         self._activa = False
         return True
 
-    def durcion(self):
+    def duracion(self):
         return (self.fecha_fin - self.fecha_inicio).days
 
     def __str__(self):
-        estado = "Activa" if self._activa else "Reservada"
-        return (f"Reserva"
-                f"Cliente: {self.cliente.nombre}"
-                f"Vehículo: {self.vehiculo.matricula}"
-                f"Inicio: {self.fecha_inicio.strftime('%d/%m/%Y')}"
-                f"Fin: {self.fecha_fin.strftime('%d/%m/%Y')}"
-                f"Estado: {estado}")
+        estado = "Activa" if self._activa else "Cancelada"
+        return (f"--- RESERVA ---\n"
+                f"Cliente: {self.cliente.nombre}\n"
+                f"Vehículo: {self.vehiculo.matricula}\n"
+                f"Inicio: {self.fecha_inicio.strftime('%d/%m/%Y')}\n"
+                f"Fin: {self.fecha_fin.strftime('%d/%m/%Y')}\n"
+                f"Estado: {estado}\n\n")
 
 
 

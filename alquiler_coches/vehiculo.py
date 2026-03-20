@@ -1,16 +1,12 @@
-#Atributos: matricula, marca, modelo, precio_dia, disponible (booleano), color
-#Métodos: alquilar(), devolver(), mostrar_info()
-#Debería de ser abstracta(COMENTAR CON MARIA)
 from abc import ABC
 from tarifa import Tarifa
-
 
 class Vehiculo(ABC):
     """
         Clase Vehiculo
             Representa un vehículo que puede ser alquilado dentro del sistema.
             Controla su identificación, características y estado de disponibilidad.
-
+        
         Atributos
         -----------------
         matricula: str
@@ -165,13 +161,10 @@ class Vehiculo(ABC):
         return True
 
     def __str__(self):
-        """
-        Devuelve una representación legible del vehículo
-        """
         estado = "Disponible" if self.disponible else "Alquilado"
-        return (f"Matrícula: {self.matricula}"
-                f"Marca: {self.marca}"
-                f"Modelo: {self.modelo}"
-                f"Estado: {estado}"
-                f"Color: {self.color}"
-                f"{self.tarifa}")
+        return (f"Matrícula: {self.matricula}\n"
+                f"Marca: {self.marca}\n"
+                f"Modelo: {self.modelo}\n"
+                f"Estado: {estado}\n"
+                f"Color: {self.color}\n"
+                f"{self.tarifa}\n")

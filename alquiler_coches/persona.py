@@ -74,16 +74,10 @@ class Persona(ABC):
         return self._telefono
 
     def __str__(self):
-        return (f'Nombre: {self.nombre}'
-                f'Dni: {self.dni}'
-                f'Gmail: {self.gmail}'
-                f'DNI: {self.dni}'
-                f'Fecha nacimiento: {self._fecha_nacimiento}'
-                f'Código postal: {self._codigo_postal}'
-                f'Telefono: {self.telefono}')
-
-
-
-p = Persona('a','a','a','a',1,1)
-print(p)
+        return (f"Nombre: {self.nombre}\n"
+                f"DNI: {self.dni}\n"
+                f"Gmail: {self.gmail}\n"
+                f"Fecha nacimiento: {self._fecha_nacimiento}\n"
+                f"Código postal: {self._codigo_postal}\n"
+                f"Teléfono: {self.telefono}\n")
 

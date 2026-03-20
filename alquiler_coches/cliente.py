@@ -49,7 +49,7 @@ class Cliente(Persona):
     def __str__(self):
         info_padre = super().__str__()
         return  (f"{info_padre}"
-            f"Historial: {len(self.historial)} alquileres")
+            f"Historial: {len(self.historial)} alquiler(es)\n")
 
 
 

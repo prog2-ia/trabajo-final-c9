@@ -1,8 +1,4 @@
-#Atributos: puertas, estado, color, plazas, bateria, autonomia, tiempo_carga (hereda de Vehiculo)
-#Métodos: usa los de Vehiculo, mostrar_info()
-
 from vehiculo import Vehiculo
-
 
 class Electrico(Vehiculo):
     """
