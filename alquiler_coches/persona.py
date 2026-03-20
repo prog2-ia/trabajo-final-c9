@@ -3,6 +3,8 @@
 
 #Debería de ser abstracta(COMENTAR CON VICTORIA)
 from abc import ABC
+from datetime import date
+
 class Persona(ABC):
     """
         Clase Persona
@@ -17,7 +19,7 @@ class Persona(ABC):
             Documento Nacional Identificador de la persona.
         gmail: str
             El correo electrónico de la persona
-        fecha_nacimiento: str
+        fecha_nacimiento: date
             Fecha de nacimiento de la persona.
         codigo_postal: int
             El Código postal de la persona
@@ -31,7 +33,7 @@ class Persona(ABC):
             Constructor del objeto.
     """
 
-    def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento: str, codigo_postal: int, telefono: int):
+    def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento: date, codigo_postal: int, telefono: int):
         """
         Metodo constructor
 
@@ -41,8 +43,8 @@ class Persona(ABC):
             Nombre de la persona
         dni: str
             Dni de la persona. Forma primaria de identificación
-        fecha_nacimiento: str
-            Fecha de nacimiento de la persona en formato dd/mm/aaaa
+        fecha_nacimiento: date
+            Fecha de nacimiento de la persona en formato date (yyyy/mm/dd)
        codigo_postal: int
             El Código postal es un número formado por cinco dígitos
         telefono: int
@@ -53,7 +55,7 @@ class Persona(ABC):
         self._nombre = nombre
         self._dni = dni
         self._gmail = gmail
-        self._fecha_nacimiento = fecha_nacimiento
+        self.fecha_nacimiento = fecha_nacimiento
         self._codigo_postal = codigo_postal
         self._telefono = telefono
 
@@ -68,6 +70,16 @@ class Persona(ABC):
     @property
     def gmail(self):
         return self._gmail
+
+    @property
+    def fecha_nacimiento(self):
+        return self._fecha_nacimiento
+
+    @fecha_nacimiento.setter
+    def fecha_inicio(self, fecha_nacimiento):
+        if not isinstance(fecha_nacimiento, date):
+            raise ValueError("La fecha de inicio será un objeto date")
+        self._fecha_nacimiento= fecha_nacimiento
 
     @property
     def telefono(self):

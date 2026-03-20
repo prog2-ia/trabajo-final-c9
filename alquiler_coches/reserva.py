@@ -36,6 +36,8 @@ class Reserva:
         duracion(self):
             Indica la duración total de la reserva en días
     """
+
+    contador = 0
     def __init__(self, cliente: Cliente, vehiculo: Vehiculo, fecha_inicio: date, fecha_fin: date):
         """
         Metodo constructor
@@ -59,6 +61,8 @@ class Reserva:
         self.fecha_inicio = fecha_inicio
         self.fecha_fin = fecha_fin
         self._activa = True
+        self._id = Reserva.contador
+        Reserva.contador += 1
 
 
     @property
@@ -107,7 +111,9 @@ class Reserva:
     def activa(self):
         return self._activa
 
-
+    @property
+    def id(self):
+        return self._id
 
     def cancelae_reserva(self):
         """
@@ -129,7 +135,8 @@ class Reserva:
                 f"Vehículo: {self.vehiculo.matricula}\n"
                 f"Inicio: {self.fecha_inicio.strftime('%d/%m/%Y')}\n"
                 f"Fin: {self.fecha_fin.strftime('%d/%m/%Y')}\n"
-                f"Estado: {estado}\n\n")
+                f"Estado: {estado}\n"
+                f"Id: {self.id}")
 
 
 
