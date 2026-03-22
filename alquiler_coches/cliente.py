@@ -1,11 +1,5 @@
-#Atributos: nombre, dni, telefono, codigo_postal, email (heredados de persona), historial de alquileres
-#Métodos: mostrar_info()
-
-
 from persona import Persona
 from alquiler import Alquiler
-from datetime import date
-
 
 class Cliente(Persona):
     """
@@ -28,7 +22,7 @@ class Cliente(Persona):
     """
 
 
-    def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento: date, codigo_postal: int, telefono: int):
+    def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento, codigo_postal: int, telefono: int):
         super().__init__(nombre, dni, gmail, fecha_nacimiento, codigo_postal, telefono)
         self._historial = []
 

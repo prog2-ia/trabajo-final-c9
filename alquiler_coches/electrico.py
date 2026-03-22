@@ -105,9 +105,9 @@ class Electrico(Vehiculo):
     def __str__(self):
         info_padre = super().__str__()
         return (f"{info_padre}"
-                f"Puertas: {self.puertas}"
-                f"Estado: {self.estado}"
-                f"Elazas: {self.plazas}"
-                f"Batería: {self.bateria}kWh"
-                f"Autonomía: {self.autonomia}km"
-                f"Tiempo_carga: {self.tiempo_carga}h")
+                f"Puertas: {self.puertas}\n"
+                f"Estado: {self.estado}\n"
+                f"Plazas: {self.plazas}\n"
+                f"Batería: {self.bateria}kWh\n"
+                f"Autonomía: {self.autonomia}km\n"
+                f"Tiempo_carga: {self.tiempo_carga}h\n")

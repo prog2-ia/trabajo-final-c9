@@ -83,7 +83,7 @@ class Turismo(Vehiculo):
         """
         info_padre = super().__str__()
         return (f"{info_padre}"
-                f"Puertas: {self.puertas}"
-                f"Combustible: {self.combustible}"
-                f"Estado: {self.estado}"
-                f"Plazas: {self.plazas}")
+                f"Puertas: {self.puertas}\n"
+                f"Combustible: {self.combustible}\n"
+                f"Estado: {self.estado}\n"
+                f"Plazas: {self.plazas}\n")

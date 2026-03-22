@@ -103,6 +103,5 @@ class Seguro:
     def __str__(self):
         return (f"--- SEGURO ---\n"
                 f"Tipo: {self.tipo_seguro}\n"
-                f"Precio/día: {self.precio_dia}\n"
-                f"Cobertura: {self._cobertura}\n")
+                f"Precio/día: {self.precio_dia}\n")
 

@@ -1,17 +1,3 @@
-#Atributos: nombre, dni, telefono, codigo_postal, email(heredado de persona), id_empleado, puesto, sueldo 
-#Métodos: gestionar_reserva()
-
-'''
-María:
-Persona, cliente, empleado, tarifa, Sistema_Alquier, Reserva, Inventario
-
-Victoria:
-Vehiculo, Turismo, Furgoneta, Electrico, Seguro, Alquiler, Factura
-
-
-'''
-
-from datetime import date
 from persona import Persona
 
 class Empleado(Persona):
@@ -86,9 +72,9 @@ class Empleado(Persona):
     def __str__(self):
         info_padre = super().__str__()
         return  (f"{info_padre}"
-            f"Id: {self.id_empleado} "
-            f"Puesto: {self.puesto} "
-            f"Sueldo: {self.sueldo}")
+            f"Id: {self.id_empleado}\n"
+            f"Puesto: {self.puesto}\n"
+            f"Sueldo: {self.sueldo}\n")
 
 
 

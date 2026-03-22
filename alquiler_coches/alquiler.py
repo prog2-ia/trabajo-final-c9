@@ -21,7 +21,7 @@ class Alquiler:
             Finaliza el alquiler
     """
 
-    def __init__(self, reserva, seguro, activo: bool):
+    def __init__(self, reserva, seguro):
         self.reserva = reserva
         self.seguro = seguro
         self.activo = True
