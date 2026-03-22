@@ -23,7 +23,7 @@ class Empleado(Persona):
 
     puestos_validos = ("gerente", "administrativo", "mecanico")
 
-    def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento: date, codigo_postal: int, telefono: int, id_empleado: int, puesto: str, sueldo: float):
+    def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento, codigo_postal: int, telefono: int, id_empleado: int, puesto: str, sueldo: float):
         super().__init__(nombre, dni, gmail, fecha_nacimiento, codigo_postal, telefono)
         self._id_empleado = id_empleado  # (solo lectura)
         self.puesto = puesto

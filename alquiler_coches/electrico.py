@@ -1,6 +1,7 @@
 from vehiculo import Vehiculo
+from recargable import Recargable 
 
-class Electrico(Vehiculo):
+class Electrico(Vehiculo, Recargable):
     """
         Clase Electrico
             Representa un vehículo eléctrico. No utiliza combustible,
@@ -30,17 +31,13 @@ class Electrico(Vehiculo):
             Devuelve la información completa del vehículo eléctrico
     """
 
-    def __init__(self, matricula, marca, modelo, precio_dia, color,
-                 puertas, estado, plazas, bateria, autonomia, tiempo_carga):
+    def __init__(self, matricula, marca, modelo, tarifa, color, puertas, estado, plazas, bateria, autonomia, tiempo_carga):
 
-        super().__init__(matricula, marca, modelo, precio_dia, color)
-
+        Vehiculo.__init__(self, matricula, marca, modelo, tarifa, color)
+        Recargable.__init__(self, bateria, autonomia, tiempo_carga)
         self.puertas = puertas
         self.estado = estado
         self.plazas = plazas
-        self.bateria = bateria
-        self.autonomia = autonomia
-        self.tiempo_carga = tiempo_carga
 
     @property
     def puertas(self):
@@ -71,36 +68,6 @@ class Electrico(Vehiculo):
         if not isinstance(nuevo, int) or nuevo <= 0:
             raise ValueError("El número de plazas debe ser positivo")
         self._plazas = nuevo
-
-    @property
-    def bateria(self):
-        return self._bateria
-
-    @bateria.setter
-    def bateria(self, nuevo):
-        if not isinstance(nuevo, (int, float)) or nuevo <= 0:
-            raise ValueError("La batería debe ser positiva (kWh)")
-        self._bateria = float(nuevo)
-
-    @property
-    def autonomia(self):
-        return self._autonomia
-
-    @autonomia.setter
-    def autonomia(self, nuevo):
-        if not isinstance(nuevo, int) or nuevo <= 0:
-            raise ValueError("La autonomía debe ser positiva")
-        self._autonomia = nuevo
-
-    @property
-    def tiempo_carga(self):
-        return self._tiempo_carga
-
-    @tiempo_carga.setter
-    def tiempo_carga(self, nuevo):
-        if not isinstance(nuevo, (int, float)) or nuevo <= 0:
-            raise ValueError("El tiempo de carga debe ser positivo")
-        self._tiempo_carga = float(nuevo)
 
     def __str__(self):
         info_padre = super().__str__()

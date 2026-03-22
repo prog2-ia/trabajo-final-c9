@@ -227,6 +227,9 @@ def main():
                         alquiler = sistema.iniciar_alquiler(r, seguro)
                         print("\nAlquiler iniciado correctamente")
                         print(alquiler)
+                        if isinstance(r.vehiculo, Electrico): 
+                            print("\nVehículo eléctrico detectado: ")
+                            r.vehiculo.recargar()
                     except Exception as e:
                         print("Error:", e)
                     break
