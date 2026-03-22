@@ -76,7 +76,7 @@ class Persona(ABC):
         return self._fecha_nacimiento
 
     @fecha_nacimiento.setter
-    def fecha_inicio(self, fecha_nacimiento):
+    def fecha_nacimiento(self, fecha_nacimiento):
         if not isinstance(fecha_nacimiento, date):
             raise ValueError("La fecha de inicio será un objeto date")
         self._fecha_nacimiento= fecha_nacimiento

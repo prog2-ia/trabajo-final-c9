@@ -8,6 +8,7 @@
 from inventario import Inventario
 from reserva import Reserva
 from alquiler import Alquiler
+from factura import Factura
 
 class SistemaAlquiler:
     """
@@ -100,10 +101,12 @@ class SistemaAlquiler:
         self._inventario.agregar_vehiculo(vehiculo)
 
     def eliminar_vehiculo(self, matricula):
-        vehiculo = self._inventario.eliminar_vehiculo(matricula)
-
-        if vehiculo and not vehiculo.disponible:
-            raise ValueError("No se puede eliminar un vehiculo alquilado")
+        vehiculo = self._inventario.buscar_por_matricula(matricula)
+        if vehiculo is None:
+            return False
+        if not vehiculo.disponible:
+            raise ValueError("No se puede eliminar un vehículo que está alquilado")
+        return self._inventario.eliminar_vehiculo(matricula)
 
     def crear_reserva(self, cliente, vehiculo, fecha_inicio, fecha_fin):
         if not vehiculo.disponible:
@@ -120,31 +123,32 @@ class SistemaAlquiler:
 
         return False
 
-    def iniciar_alquiler(self, reserva):
+    def iniciar_alquiler(self, reserva, seguro):
         if not reserva.activa:
             raise ValueError("La reserva no está activa")
-
+ 
         vehiculo = reserva.vehiculo
-
+ 
         if not vehiculo.disponible:
             raise ValueError("El vehículo ya está alquilado")
-
+ 
         vehiculo.alquilar()
-
-        alquiler = Alquiler(reserva)
+ 
+        alquiler = Alquiler(reserva, seguro)
         self._alquileres.append(alquiler)
-
+ 
         cliente = reserva.cliente
-        cliente.anyadir_alquiler(alquiler)
-
+        cliente.anyadir_vehiculo(alquiler)
+ 
         return alquiler
 
     def finalizar_alquiler(self, alquiler):
         if alquiler not in self._alquileres:
-            return False
+            return None
         alquiler.finalizar()
-
-        return True
+        factura = Factura(alquiler)
+        factura.generar_total()
+        return factura
 
     def vehiculos_disponibles(self):
         return self._inventario.lista_disponible()
@@ -157,4 +161,6 @@ class SistemaAlquiler:
 
     def listar_alquileres(self):
         return self._alquileres
-
+    
+    def reservas_activas(self):
+        return [r for r in self._reservas if r.activa]

@@ -24,7 +24,7 @@ class Alquiler:
     def __init__(self, reserva, seguro, activo: bool):
         self.reserva = reserva
         self.seguro = seguro
-        self.activo = activo
+        self.activo = True
 
     @property
     def reserva(self):
@@ -61,11 +61,8 @@ class Alquiler:
         Calcula el coste total del alquiler
         """
         dias = self.reserva.duracion()
-        # Precio del vehículo
         precio_vehiculo = self.reserva.vehiculo.tarifa.precio_base * dias
-        # Precio del seguro
         precio_seguro = self.seguro.calcular_precio(dias)
-
         return precio_vehiculo + precio_seguro
 
     def finalizar(self):

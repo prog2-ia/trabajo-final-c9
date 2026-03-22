@@ -1,14 +1,6 @@
 #Atributos: vehículos(lista)
 #Métodos: agregar_vehiculo(), eliminar_vehiculo(), buscar_disponible(), listar()
-
-
-# QUIERO UN METODO DONDE TENGA UNA LISTA DE VEHICULOS A ALQUILAR,
-# Y SE SEPARE COMO EN DOS SECCIONES: DISPONIBLES Y NO DISPONIBLES
-# Y QUE NO ELIMIE LOS COCHES, SOLO QUE LOS PONGA COMO NO DISPONIBLES
-# Y QUE SE VUELVAN A PONER COMO DISPONIBLES CUANDO TOQUE
-
-from alquiler_coches.vehiculo import Vehiculo
-
+from vehiculo import Vehiculo
 
 class Inventario:
     """

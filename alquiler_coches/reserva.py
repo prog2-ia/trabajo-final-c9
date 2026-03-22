@@ -30,7 +30,7 @@ class Reserva:
         __init__(self, cliente: Cliente, vehiculo: Vehiculo, fecha_inicio: date, fecha_fin: date)
             Constructor del objeto.
 
-        cancelae_reserva(self):
+        cancelar_reserva(self):
             Cancelamos la reserva y indicamos el atributo ativa como falso
 
         duracion(self):
@@ -115,7 +115,7 @@ class Reserva:
     def id(self):
         return self._id
 
-    def cancelae_reserva(self):
+    def cancelar_reserva(self):
         """
         Si la reserva es False, devolvemos False porque la reserva ya estaba cancelada
         Del otro modo, si la reserva es True, la ponemos como False y devolvemos True. La reserva ha sido cancelada
