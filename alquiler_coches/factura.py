@@ -21,7 +21,7 @@ class Factura:
             Devuelve la información de la factura
     """
 
-    def __init__(self, alquiler: Alquiler):
+    def __init__(self, alquiler: Alquiler) -> None:
         """
         Metodo constructor
         """
@@ -29,27 +29,27 @@ class Factura:
         self._total = 0.0
 
     @property
-    def alquiler(self):
+    def alquiler(self) -> Alquiler:
         return self._alquiler
 
     @alquiler.setter
-    def alquiler(self, nuevo_alquiler):
+    def alquiler(self, nuevo_alquiler) -> None:
         if not isinstance(nuevo_alquiler, Alquiler):
             raise ValueError("Debe ser un objeto de tipo Alquiler")
         self._alquiler = nuevo_alquiler
 
     @property
-    def total(self):
+    def total(self) -> float:
         return self._total
 
-    def generar_total(self):
+    def generar_total(self) -> float:
         """
         Calcula el total de la factura
         """
         self._total = self.alquiler.calcular_total()
         return self._total
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (f"========== FACTURA ==========\n"
                 f"{self.alquiler.reserva}\n"
                 f"{self.alquiler.seguro}\n"

@@ -37,7 +37,7 @@ class Vehiculo(ABC):
             Devuelve la información del vehículo en formato legible
     """
 
-    def __init__(self, matricula: str, marca: str, modelo: str, tarifa: Tarifa, color: str):
+    def __init__(self, matricula: str, marca: str, modelo: str, tarifa: Tarifa, color: str) -> None:
         """
         Metodo constructor
 
@@ -62,11 +62,11 @@ class Vehiculo(ABC):
         self._disponible = True
 
     @property
-    def matricula(self):
+    def matricula(self) -> str:
         return self._matricula
 
     @matricula.setter
-    def matricula(self, nuevo):
+    def matricula(self, nuevo: str) -> None:
         """
         Establece la matrícula validando que no esté vacía
         """
@@ -75,11 +75,11 @@ class Vehiculo(ABC):
         self._matricula = nuevo.strip().upper()
 
     @property
-    def marca(self):
+    def marca(self) -> str:
         return self._marca
 
     @marca.setter
-    def marca(self, nuevo):
+    def marca(self, nuevo: str) -> None:
         """
         Establece la marca validando que no esté vacía
         """
@@ -88,11 +88,11 @@ class Vehiculo(ABC):
         self._marca = nuevo.strip()
 
     @property
-    def modelo(self):
+    def modelo(self) -> str:
         return self._modelo
 
     @modelo.setter
-    def modelo(self, nuevo):
+    def modelo(self, nuevo: str) -> None:
         """
         Establece el modelo validando que no esté vacío
         """
@@ -101,11 +101,11 @@ class Vehiculo(ABC):
         self._modelo = nuevo.strip()
 
     @property
-    def tarifa(self):
+    def tarifa(self) -> Tarifa:
         return self._tarifa
 
     @tarifa.setter
-    def tarifa(self, nueva_tarifa: Tarifa):
+    def tarifa(self, nueva_tarifa: Tarifa) -> None:
         """
         Establece que la tarifa obtenida ser un objeto de la clase Tarifa
         """
@@ -114,11 +114,11 @@ class Vehiculo(ABC):
         self._tarifa = nueva_tarifa
 
     @property
-    def color(self):
+    def color(self) -> str:
         return self._color
 
     @color.setter
-    def color(self, nuevo):
+    def color(self, nuevo: str) -> None:
         """
         Establece el color validando que no esté vacío
         """
@@ -127,10 +127,10 @@ class Vehiculo(ABC):
         self._color = nuevo.strip()
 
     @property
-    def disponible(self):
+    def disponible(self) -> bool:
         return self._disponible
 
-    def alquilar(self):
+    def alquilar(self) -> bool:
         """
         Intenta alquilar el vehículo
 
@@ -145,7 +145,7 @@ class Vehiculo(ABC):
         self._disponible = False
         return True
 
-    def devolver(self):
+    def devolver(self) -> bool:
         """
         Devuelve el vehículo al sistema
 
@@ -160,7 +160,7 @@ class Vehiculo(ABC):
         self._disponible = True
         return True
 
-    def __str__(self):
+    def __str__(self) -> str:
         estado = "Disponible" if self.disponible else "Alquilado"
         return (f"Matrícula: {self.matricula}\n"
                 f"Marca: {self.marca}\n"

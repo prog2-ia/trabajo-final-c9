@@ -21,17 +21,31 @@ class Alquiler:
             Finaliza el alquiler
     """
 
-    def __init__(self, reserva, seguro):
+    def __init__(self, reserva: "Reserva", seguro: "Seguro") -> None:
         self.reserva = reserva
         self.seguro = seguro
         self.activo = True
+
+        """
+        Metodo constructor
+
+        Parámetros:
+        -----------------+
+        reserva: 
+            Objeto de la clase Reserva 
+        seguro: 
+            Objeto de la clase Seguro 
+        activo: bool
+            Si True --> el alquiler está ativo
+            Si False --> el alquiler no está activo
+        """
 
     @property
     def reserva(self):
         return self._reserva
 
     @reserva.setter
-    def reserva(self, nueva_reserva):
+    def reserva(self, nueva_reserva) -> None:
         if nueva_reserva is None:
             raise ValueError("La reserva no puede ser None")
         self._reserva = nueva_reserva
@@ -41,22 +55,22 @@ class Alquiler:
         return self._seguro
 
     @seguro.setter
-    def seguro(self, nuevo_seguro):
+    def seguro(self, nuevo_seguro) -> None:
         if nuevo_seguro is None:
             raise ValueError("El seguro no puede ser None")
         self._seguro = nuevo_seguro
 
     @property
-    def activo(self):
+    def activo(self) -> bool:
         return self._activo
 
     @activo.setter
-    def activo(self, nuevo: bool):
+    def activo(self, nuevo: bool) -> None:
         if not isinstance(nuevo, bool):
             raise ValueError("El estado debe ser booleano")
         self._activo = nuevo
 
-    def calcular_total(self):
+    def calcular_total(self) -> float:
         """
         Calcula el coste total del alquiler
         """
@@ -65,7 +79,7 @@ class Alquiler:
         precio_seguro = self.seguro.calcular_precio(dias)
         return precio_vehiculo + precio_seguro
 
-    def finalizar(self):
+    def finalizar(self) -> None:
         """
         Finaliza el alquiler
         """
@@ -73,7 +87,7 @@ class Alquiler:
         self.reserva._activa = False
         self.reserva.vehiculo.devolver()
 
-    def __str__(self):
+    def __str__(self) -> str:
         estado = "Activo" if self.activo else "Finalizado"
         return (f"{self.reserva}\n"
                 f"{self.seguro}\n"

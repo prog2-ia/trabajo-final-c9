@@ -21,7 +21,7 @@ class Tarifa:
             Calcula el precio total del alquiler del vehiculo
     """
 
-    def __init__(self, precio_base: float, precio_km: float, penalizacion_retraso: float):
+    def __init__(self, precio_base: float, precio_km: float, penalizacion_retraso: float) -> None:
         self.precio_base = precio_base
         self.precio_km = precio_km
         self.penalizacion_retraso = penalizacion_retraso
@@ -40,31 +40,31 @@ class Tarifa:
         """
 
     @property
-    def precio_base(self):
+    def precio_base(self) -> float:
         return self._precio_base
 
     @precio_base.setter
-    def precio_base(self, nuevo_precio):
+    def precio_base(self, nuevo_precio: float ) -> None:
         if not isinstance(nuevo_precio, (int, float)) or nuevo_precio < 0:
             raise ValueError("El precio base debe ser positivo")
         self._precio_base = float(nuevo_precio)
 
     @property
-    def precio_km(self):
+    def precio_km(self) -> float:
         return self._precio_km
 
     @precio_km.setter
-    def precio_km(self, nuevo):
+    def precio_km(self, nuevo) -> None:
         if not isinstance(nuevo, (int, float)) or nuevo < 0:
             raise ValueError("El precio por km no puede ser negativo.")
         self._precio_km = float(nuevo)
 
     @property
-    def penalizacion_retraso(self):
+    def penalizacion_retraso(self) -> float:
         return self._penalizacion_retraso
 
     @penalizacion_retraso.setter
-    def penalizacion_retraso(self, nuevo):
+    def penalizacion_retraso(self, nuevo: float) -> None:
         if not isinstance(nuevo, (int, float)) or nuevo < 0:
             raise ValueError("La penalización no puede ser negativa.")
         self._penalizacion_retraso = float(nuevo)
@@ -75,7 +75,7 @@ class Tarifa:
             total += self.penalizacion_retraso
         return total
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (f"Tarifa -> Precio base: {self.precio_base}€/día, "
                 f"Precio por km: {self.precio_km}€, "
                 f"Penalización: {self.penalizacion_retraso}€")

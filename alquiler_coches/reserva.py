@@ -19,7 +19,7 @@ class Reserva:
 
         Metodos:
         -------------
-        __init__(self, cliente: Cliente, vehiculo: Vehiculo, dias)
+        __init__(self, cliente: Cliente, vehiculo: Vehiculo, dias: int)
             Constructor del objeto.
 
         cancelar_reserva(self):
@@ -30,7 +30,7 @@ class Reserva:
     """
     contador = 0
 
-    def __init__(self, cliente: Cliente, vehiculo: Vehiculo, dias): 
+    def __init__(self, cliente: Cliente, vehiculo: Vehiculo, dias: int) -> None:
         """
         Metodo constructor
 
@@ -54,37 +54,37 @@ class Reserva:
         Reserva.contador += 1
 
     @property
-    def cliente(self):
+    def cliente(self) -> Cliente:
         return self._cliente
 
     @cliente.setter
-    def cliente(self, nuevo_cliente):
+    def cliente(self, nuevo_cliente) -> None:
         if not isinstance(nuevo_cliente, Cliente):
             raise ValueError("Cliente debe ser un objeto de Cliente")
         self._cliente = nuevo_cliente
 
     @property
-    def vehiculo(self):
+    def vehiculo(self) -> Vehiculo:
         return self._vehiculo
 
     @vehiculo.setter
-    def vehiculo(self, nuevo_vehiculo):
+    def vehiculo(self, nuevo_vehiculo) -> None:
         if not isinstance(nuevo_vehiculo, Vehiculo):
             raise ValueError("Vehiculo debe ser un objeto de Vehiculo")
         self._vehiculo = nuevo_vehiculo
 
     @property
-    def activa(self):
+    def activa(self) -> bool:
         return self._activa
 
     @property
     def id(self):
         return self._id
     
-    def duracion(self): 
+    def duracion(self) -> int:
         return self._dias 
     
-    def cancelar_reserva(self):
+    def cancelar_reserva(self) -> bool:
         """
         Si la reserva es False, devolvemos False porque la reserva ya estaba cancelada
         Del otro modo, si la reserva es True, la ponemos como False y devolvemos True. La reserva ha sido cancelada
@@ -94,7 +94,7 @@ class Reserva:
         self._activa = False
         return True
 
-    def __str__(self):
+    def __str__(self) -> str:
         estado = "Activa" if self._activa else "Cancelada"
         return (f"--- RESERVA ---\n"
                 f"Cliente: {self.cliente.nombre}\n"

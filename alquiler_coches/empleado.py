@@ -1,4 +1,5 @@
 from persona import Persona
+from datetime import date
 
 class Empleado(Persona):
     """
@@ -23,7 +24,7 @@ class Empleado(Persona):
 
     puestos_validos = ("gerente", "administrativo", "mecanico")
 
-    def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento, codigo_postal: int, telefono: int, id_empleado: int, puesto: str, sueldo: float):
+    def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento: date, codigo_postal: int, telefono: int, id_empleado: int, puesto: str, sueldo: float) -> None:
         super().__init__(nombre, dni, gmail, fecha_nacimiento, codigo_postal, telefono)
         self._id_empleado = id_empleado  # (solo lectura)
         self.puesto = puesto
@@ -43,15 +44,15 @@ class Empleado(Persona):
         """
 
     @property
-    def id_empleado(self):
+    def id_empleado(self) -> int:
         return self._id_empleado
 
     @property
-    def puesto(self):
+    def puesto(self) -> str:
         return self._puesto
 
     @puesto.setter
-    def puesto(self, nuevo_puesto):
+    def puesto(self, nuevo_puesto: str) -> None:
         if not isinstance(nuevo_puesto, str):
             raise ValueError("Puesto debe ser un str ")
         if nuevo_puesto.lower() not in Empleado.puestos_validos:
@@ -59,17 +60,17 @@ class Empleado(Persona):
         self._puesto = nuevo_puesto
 
     @property
-    def sueldo(self):
+    def sueldo(self) -> float:
         return self._sueldo
 
     @sueldo.setter
-    def sueldo(self, nuevo_sueldo):
+    def sueldo(self, nuevo_sueldo:float) -> None:
         if not isinstance(nuevo_sueldo, (int, float)) or nuevo_sueldo < 0:
             raise ValueError("Sueldo debe ser mayor que 0.")
         self._sueldo = nuevo_sueldo
 
 
-    def __str__(self):
+    def __str__(self) -> str:
         info_padre = super().__str__()
         return  (f"{info_padre}"
             f"Id: {self.id_empleado}\n"

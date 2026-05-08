@@ -7,6 +7,17 @@ from seguro import Seguro
 from sistema_alquiler import SistemaAlquiler
 from empleado import Empleado
 
+
+
+"""
+- Dividir en paquetes
+
+Victoria: alquiler, cliente, electrico, empleado, factura, furgoneta, turismo, main
+
+María: inventario, persona, recargable, resera, seguro, sistema_alquiler, tarifa, vehiculo
+
+"""
+
 def main():
     sistema = SistemaAlquiler()
 
@@ -53,9 +64,9 @@ def main():
             nombre  = input("Nombre: ").strip()
             dni = input("DNI: ").strip()
             gmail = input("Gmail: ").strip()
-            fecha_nacimiento = input("Fecha de nacimiento: ")
-            codigo_postal = input("Código Postal: ")
-            telefono = input("Telefono: ")
+            fecha_nacimiento = input("Fecha de nacimiento (YYYY-MM-DD): ")
+            codigo_postal = int(input("Código Postal: "))
+            telefono = int(input("Telefono: "))
             try:
                 cliente = Cliente(nombre, dni, gmail, fecha_nacimiento, codigo_postal, telefono)
                 sistema.registrar_cliente(cliente)
@@ -305,9 +316,9 @@ def main():
                 nombre = input("Nombre: ").strip()
                 dni = input("DNI: ").strip()
                 gmail = input("Gmail: ").strip()
-                fecha_nacimiento = input("Fecha de nacimiento: ")
-                codigo_postal = input("Código Postal: ")
-                telefono = input("Teléfono: ")
+                fecha_nacimiento = input("Fecha de nacimiento (YYYY-MM-DD): ")
+                codigo_postal = int(input("Código Postal: "))
+                telefono = int(input("Teléfono: "))
                 id_empleado = int(input("ID empleado: "))
                 print("Puestos disponibles: gerente, administrativo, mecanico")
                 puesto = input("Puesto: ").strip()

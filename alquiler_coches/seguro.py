@@ -25,7 +25,7 @@ class Seguro:
             Devuelve la información del seguro en formato legible
     """
 
-    def __init__(self, tipo_seguro: str, precio_dia: float, cobertura: dict):
+    def __init__(self, tipo_seguro: str, precio_dia: float, cobertura: dict) -> None:
         """
         Metodo constructor
 
@@ -44,11 +44,11 @@ class Seguro:
         self.cobertura = cobertura
 
     @property
-    def tipo_seguro(self):
+    def tipo_seguro(self) -> str:
         return self._tipo_seguro
 
     @tipo_seguro.setter
-    def tipo_seguro(self, nuevo):
+    def tipo_seguro(self, nuevo: str) -> None:
         """
         Establece el tipo de seguro validando que no esté vacío
         """
@@ -57,11 +57,11 @@ class Seguro:
         self._tipo_seguro = nuevo.strip()
 
     @property
-    def precio_dia(self):
+    def precio_dia(self) -> float:
         return self._precio_dia
 
     @precio_dia.setter
-    def precio_dia(self, nuevo):
+    def precio_dia(self, nuevo: float) -> None:
         """
         Establece el precio por día validando que sea positivo
         """
@@ -70,11 +70,11 @@ class Seguro:
         self._precio_dia = float(nuevo)
 
     @property
-    def cobertura(self):
+    def cobertura(self) -> dict[str, str]:
         return self._cobertura.copy()
 
     @cobertura.setter
-    def cobertura(self, nuevo):
+    def cobertura(self, nuevo: dict[str, str]) -> None:
         """
         Establece la cobertura validando que sea un diccionario no vacío
         """
@@ -82,7 +82,7 @@ class Seguro:
             raise ValueError("La cobertura debe ser un diccionario no vacío")
         self._cobertura = nuevo.copy()
 
-    def calcular_precio(self, dias: int):
+    def calcular_precio(self, dias: int) -> float:
         """
         Calcula el precio total del seguro
 
@@ -100,7 +100,7 @@ class Seguro:
             raise ValueError("Los días deben ser un entero positivo")
         return self.precio_dia * dias
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (f"--- SEGURO ---\n"
                 f"Tipo: {self.tipo_seguro}\n"
                 f"Precio/día: {self.precio_dia}\n")

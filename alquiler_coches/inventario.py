@@ -25,8 +25,8 @@ class Inventario:
 
     """
 
-    def __init__(self):
-        self._vehiculos = []
+    def __init__(self) -> None:
+        self._vehiculos: list = []
 
         """
         Metodo constructor
@@ -38,29 +38,29 @@ class Inventario:
         """
 
     @property
-    def vehiculos(self):
+    def vehiculos(self) -> list:
         return self._vehiculos
 
-    def agregar_vehiculo(self, vehiculo):
+    def agregar_vehiculo(self, vehiculo) -> None:
         if not isinstance(vehiculo, Vehiculo):
             raise TypeError('Inventario necesita un objeto Vehiculo')
         self._vehiculos.append(vehiculo)
 
-    def eliminar_vehiculo(self, matricula):
+    def eliminar_vehiculo(self, matricula) -> bool:
         for vehiculo in self._vehiculos:
             if vehiculo.matricula == matricula:
                 self._vehiculos.remove(vehiculo)
                 return True
         return False
 
-    def lista_disponible(self):
+    def lista_disponible(self) -> list[Vehiculo]:
         vehiculos_disponibles = []
         for vehiculo in self._vehiculos:
             if vehiculo.disponible:
                 vehiculos_disponibles.append(vehiculo)
         return vehiculos_disponibles
 
-    def buscar_por_matricula(self, matricula):
+    def buscar_por_matricula(self, matricula) -> Vehiculo | None:
         vehiculo_encontrado = None
         for vehiculo in self._vehiculos:
             if vehiculo.matricula == matricula:

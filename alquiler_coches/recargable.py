@@ -18,10 +18,10 @@ class Recargable:
             Simula la recarga del vehículo
     """
 
-    def __init__(self, bateria, autonomia, tiempo_carga):
+    def __init__(self, bateria: float, autonomia: int, tiempo_carga: float) -> None:
         self.bateria = bateria
         self.autonomia = autonomia
         self.tiempo_carga = tiempo_carga
 
-    def recargar(self):
+    def recargar(self) -> None:
         print(f"Recargando batería de {self.bateria}kWh... Tiempo estimado: {self.tiempo_carga}h")

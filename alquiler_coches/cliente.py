@@ -1,5 +1,6 @@
 from persona import Persona
 from alquiler import Alquiler
+from datetime import date
 
 class Cliente(Persona):
     """
@@ -22,9 +23,9 @@ class Cliente(Persona):
     """
 
 
-    def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento, codigo_postal: int, telefono: int):
+    def __init__(self, nombre: str, dni: str, gmail: str, fecha_nacimiento: date, codigo_postal: int, telefono: int) -> None:
         super().__init__(nombre, dni, gmail, fecha_nacimiento, codigo_postal, telefono)
-        self._historial = []
+        self._historial: list = []
 
         """
         Metodo constructor
@@ -36,13 +37,13 @@ class Cliente(Persona):
         """
 
     @property
-    def historial(self):
+    def historial(self) -> list:
         return self._historial
 
     def anyadir_vehiculo(self, alquiler: Alquiler) -> None:  # alquiler es un objeto de Alquiler
         self._historial.append(alquiler)
 
-    def __str__(self):
+    def __str__(self) -> str:
         info_padre = super().__str__()
         return  (f"{info_padre}"
             f"Historial: {len(self.historial)} alquiler(es)\n")
