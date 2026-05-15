@@ -1,5 +1,16 @@
+"""
+__future__.annotations --> retrasa la evaluación de los tipos
+TYPE_CHECKING --> permite importar clases solo para mypy, evitando dependencias circulares durante la ejecución.
+"""
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from tarifa import Tarifa
+
+
 from vehiculo import Vehiculo
-from recargable import Recargable 
+from recargable import Recargable
+
 
 class Electrico(Vehiculo, Recargable):
     """
@@ -31,7 +42,7 @@ class Electrico(Vehiculo, Recargable):
             Devuelve la información completa del vehículo eléctrico
     """
 
-    def __init__(self, matricula: str, marca: str, modelo: str, tarifa: "Tarifa", color: str, puertas: int, estado: str, plazas: int, bateria: float, autonomia: int, tiempo_carga: float) -> None:
+    def __init__(self, matricula: str, marca: str, modelo: str, tarifa: Tarifa, color: str, puertas: int, estado: str, plazas: int, bateria: float, autonomia: int, tiempo_carga: float) -> None:
 
         Vehiculo.__init__(self, matricula, marca, modelo, tarifa, color)
         Recargable.__init__(self, bateria, autonomia, tiempo_carga)

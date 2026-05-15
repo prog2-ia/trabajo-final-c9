@@ -149,7 +149,7 @@ def main():
                 indice_cliente_elegido = int(input("Selecciona cliente: "))
                 cliente_elegido = clientes[indice_cliente_elegido]
             except Exception as e:
-                print("Selección inválida")
+                print("Selección inválida:", e)
                 continue
             print("\nFiltrar vehículos (Enter para saltar filtro):")
             tipo = input("Tipo (turismo/furgoneta/electrico): ").strip().lower() or None
@@ -342,8 +342,8 @@ def main():
                 if not empleados:
                     print("No hay empleados registrados")
                 else:
-                    for e in empleados:
-                        print(e)
+                    for emp in empleados:
+                        print(emp)
 
         # 13. VER INGRESOS TOTALES
         elif opcion == "13":

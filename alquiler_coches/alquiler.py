@@ -1,3 +1,10 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from reserva import Reserva
+    from seguro import Seguro
+
 class Alquiler:
     """
         Clase Alquiler
@@ -21,7 +28,7 @@ class Alquiler:
             Finaliza el alquiler
     """
 
-    def __init__(self, reserva: "Reserva", seguro: "Seguro") -> None:
+    def __init__(self, reserva: Reserva, seguro: Seguro) -> None:
         self.reserva = reserva
         self.seguro = seguro
         self.activo = True
@@ -45,7 +52,7 @@ class Alquiler:
         return self._reserva
 
     @reserva.setter
-    def reserva(self, nueva_reserva) -> None:
+    def reserva(self, nueva_reserva: Reserva) -> None:
         if nueva_reserva is None:
             raise ValueError("La reserva no puede ser None")
         self._reserva = nueva_reserva
@@ -55,7 +62,7 @@ class Alquiler:
         return self._seguro
 
     @seguro.setter
-    def seguro(self, nuevo_seguro) -> None:
+    def seguro(self, nuevo_seguro: Seguro) -> None:
         if nuevo_seguro is None:
             raise ValueError("El seguro no puede ser None")
         self._seguro = nuevo_seguro
