@@ -1,22 +1,14 @@
-from cliente import Cliente
-from turismo import Turismo
-from electrico import Electrico
-from furgoneta import Furgoneta
-from tarifa import Tarifa
-from seguro import Seguro
-from sistema_alquiler import SistemaAlquiler
-from empleado import Empleado
+from personas.cliente import Cliente
+from vehiculos.turismo import Turismo
+from vehiculos.electrico import Electrico
+from vehiculos.furgoneta import Furgoneta
+from gestion_alquileres.tarifa import Tarifa
+from gestion_alquileres.seguro import Seguro
+from gestion_alquileres.sistema_alquiler import SistemaAlquiler
+from personas.empleado import Empleado
 
 
 
-"""
-- Dividir en paquetes
-
-Victoria: alquiler, cliente, electrico, empleado, factura, furgoneta, turismo, main
-
-María: inventario, persona, recargable, resera, seguro, sistema_alquiler, tarifa, vehiculo
-
-"""
 
 def main():
     sistema = SistemaAlquiler()
