@@ -1,5 +1,9 @@
-from .alquiler import Alquiler
+from __future__ import annotations
+from typing import TYPE_CHECKING
 
+if TYPE_CHECKING:
+    from gestion_alquileres import Alquiler
+    
 class Factura:
     """
         Clase Factura

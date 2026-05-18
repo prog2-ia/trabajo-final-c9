@@ -1,14 +1,6 @@
-from personas.cliente import Cliente
-from vehiculos.turismo import Turismo
-from vehiculos.electrico import Electrico
-from vehiculos.furgoneta import Furgoneta
-from gestion_alquileres.tarifa import Tarifa
-from gestion_alquileres.seguro import Seguro
-from gestion_alquileres.sistema_alquiler import SistemaAlquiler
-from personas.empleado import Empleado
-
-
-
+from personas import Cliente, Empleado
+from vehiculos import Turismo, Electrico, Furgoneta
+from gestion_alquileres import Tarifa, Seguro, SistemaAlquiler
 
 def main():
     sistema = SistemaAlquiler()

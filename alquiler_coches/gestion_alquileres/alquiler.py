@@ -1,9 +1,8 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
+
 if TYPE_CHECKING:
-    from reserva import Reserva
-    from seguro import Seguro
+    from gestion_alquileres import Reserva, Seguro
 
 class Alquiler:
     """

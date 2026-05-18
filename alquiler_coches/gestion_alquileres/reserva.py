@@ -1,5 +1,9 @@
-from personas.cliente import Cliente
-from vehiculos.vehiculo import Vehiculo
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from personas import Cliente
+    from vehiculos import Vehiculo
 
 class Reserva:
     """
