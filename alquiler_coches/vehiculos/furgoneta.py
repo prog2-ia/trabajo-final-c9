@@ -1,0 +1,89 @@
+from .vehiculo import Vehiculo
+
+class Furgoneta(Vehiculo):
+    """
+        Clase Furgoneta
+            Representa un vehículo destinado principalmente al transporte de mercancías
+            o grupos grandes de personas. Hereda de Vehiculo y añade características propias.
+
+        Atributos
+        -----------------
+        puertas: int
+            Número de puertas del vehículo
+        combustible: str
+            Tipo de combustible (diésel, gasolina, eléctrico...)
+        estado: str
+            Estado general del vehículo
+        plazas: int
+            Número de plazas disponibles
+
+        Métodos
+        -------------
+        __init__(...)
+            Constructor del objeto
+
+        __str__(self) -> str
+            Devuelve la información completa de la furgoneta
+    """
+
+    def __init__(self, matricula: str, marca: str, modelo: str, precio_dia, color: str, puertas: int, combustible: str, estado: str, plazas: int) -> None:
+        """
+        Metodo constructor
+        """
+        super().__init__(matricula, marca, modelo, precio_dia, color)
+
+        self.puertas = puertas
+        self.combustible = combustible
+        self.estado = estado
+        self.plazas = plazas
+
+    @property
+    def puertas(self) -> int:
+        return self._puertas
+
+    @puertas.setter
+    def puertas(self, nuevo: int) -> None:
+        if not isinstance(nuevo, int) or nuevo <= 0:
+            raise ValueError("El número de puertas debe ser positivo")
+        self._puertas = nuevo
+
+    @property
+    def combustible(self) -> str:
+        return self._combustible
+
+    @combustible.setter
+    def combustible(self, nuevo) -> None:
+        if not isinstance(nuevo, str) or not nuevo.strip():
+            raise ValueError("El combustible no puede estar vacío")
+        self._combustible = nuevo.strip().lower()
+
+    @property
+    def estado(self) -> str:
+        return self._estado
+
+    @estado.setter
+    def estado(self, nuevo: str) -> None:
+        if not isinstance(nuevo, str) or not nuevo.strip():
+            raise ValueError("El estado no puede estar vacío")
+        self._estado = nuevo.strip()
+
+    @property
+    def plazas(self) -> int:
+        return self._plazas
+
+    @plazas.setter
+    def plazas(self, nuevo: int) -> None:
+        if not isinstance(nuevo, int) or nuevo <= 0:
+            raise ValueError("El número de plazas debe ser positivo")
+        self._plazas = nuevo
+
+    def __str__(self) -> str:
+        """
+        Devuelve una representación legible de la furgoneta
+        """
+        info_padre = super().__str__()
+        return (f"{info_padre}"
+                f"Puertas: {self.puertas}\n"
+                f"Combustible: {self.combustible}\n"
+                f"Estado: {self.estado}\n"
+                f"Plazas: {self.plazas}\n")

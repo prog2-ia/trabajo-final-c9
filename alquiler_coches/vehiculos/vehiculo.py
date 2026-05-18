@@ -1,0 +1,170 @@
+from abc import ABC
+from gestion_alquileres.tarifa import Tarifa
+
+class Vehiculo(ABC):
+    """
+        Clase Vehiculo
+            Representa un vehículo que puede ser alquilado dentro del sistema.
+            Controla su identificación, características y estado de disponibilidad.
+        
+        Atributos
+        -----------------
+        matricula: str
+            Identificador único del vehículo
+        marca: str
+            Marca del vehículo
+        modelo: str
+            Modelo del vehículo
+        tarifa: float
+            Objeto de la clase Tarifa
+        color: str
+            Color del vehículo
+        disponible: bool
+            Indica si el vehículo puede alquilarse
+
+        Métodos
+        -------------
+        __init__(self, matricula: str, marca: str, modelo: str, precio_dia: float, color: str) -> None
+            Constructor del objeto
+
+        alquilar(self) -> bool
+            Cambia el estado a no disponible si el vehículo puede alquilarse
+
+        devolver(self) -> bool
+            Cambia el estado a disponible si el vehículo estaba alquilado
+
+        __str__(self) -> str
+            Devuelve la información del vehículo en formato legible
+    """
+
+    def __init__(self, matricula: str, marca: str, modelo: str, tarifa: Tarifa, color: str) -> None:
+        """
+        Metodo constructor
+
+        Parámetros
+        -----------------
+        matricula: str
+            Identificador único del vehículo
+        marca: str
+            Marca del vehículo
+        modelo: str
+            Modelo del vehículo
+        tarifa: Tarifa
+            Tarifa del coche a alquilar
+        color: str
+            Color del vehículo
+        """
+        self.matricula = matricula
+        self.marca = marca
+        self.modelo = modelo
+        self.tarifa = tarifa
+        self.color = color
+        self._disponible = True
+
+    @property
+    def matricula(self) -> str:
+        return self._matricula
+
+    @matricula.setter
+    def matricula(self, nuevo: str) -> None:
+        """
+        Establece la matrícula validando que no esté vacía
+        """
+        if not isinstance(nuevo, str) or not nuevo.strip():
+            raise ValueError("La matrícula no puede estar vacía")
+        self._matricula = nuevo.strip().upper()
+
+    @property
+    def marca(self) -> str:
+        return self._marca
+
+    @marca.setter
+    def marca(self, nuevo: str) -> None:
+        """
+        Establece la marca validando que no esté vacía
+        """
+        if not isinstance(nuevo, str) or not nuevo.strip():
+            raise ValueError("La marca no puede estar vacía")
+        self._marca = nuevo.strip()
+
+    @property
+    def modelo(self) -> str:
+        return self._modelo
+
+    @modelo.setter
+    def modelo(self, nuevo: str) -> None:
+        """
+        Establece el modelo validando que no esté vacío
+        """
+        if not isinstance(nuevo, str) or not nuevo.strip():
+            raise ValueError("El modelo no puede estar vacío")
+        self._modelo = nuevo.strip()
+
+    @property
+    def tarifa(self) -> Tarifa:
+        return self._tarifa
+
+    @tarifa.setter
+    def tarifa(self, nueva_tarifa: Tarifa) -> None:
+        """
+        Establece que la tarifa obtenida ser un objeto de la clase Tarifa
+        """
+        if not isinstance(nueva_tarifa, Tarifa):
+            raise ValueError("Debe ser una instancia de Tarifa")
+        self._tarifa = nueva_tarifa
+
+    @property
+    def color(self) -> str:
+        return self._color
+
+    @color.setter
+    def color(self, nuevo: str) -> None:
+        """
+        Establece el color validando que no esté vacío
+        """
+        if not isinstance(nuevo, str) or not nuevo.strip():
+            raise ValueError("El color no puede estar vacío")
+        self._color = nuevo.strip()
+
+    @property
+    def disponible(self) -> bool:
+        return self._disponible
+
+    def alquilar(self) -> bool:
+        """
+        Intenta alquilar el vehículo
+
+        Retorno
+        -----------------
+        bool
+            True si el vehículo pasa a estar alquilado
+            False si ya estaba alquilado
+        """
+        if not self._disponible:
+            return False
+        self._disponible = False
+        return True
+
+    def devolver(self) -> bool:
+        """
+        Devuelve el vehículo al sistema
+
+        Retorno
+        -----------------
+        bool
+            True si el vehículo pasa a estar disponible
+            False si ya lo estaba
+        """
+        if self._disponible:
+            return False
+        self._disponible = True
+        return True
+
+    def __str__(self) -> str:
+        estado = "Disponible" if self.disponible else "Alquilado"
+        return (f"Matrícula: {self.matricula}\n"
+                f"Marca: {self.marca}\n"
+                f"Modelo: {self.modelo}\n"
+                f"Estado: {estado}\n"
+                f"Color: {self.color}\n"
+                f"{self.tarifa}\n")
