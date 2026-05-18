@@ -60,4 +60,20 @@ class Factura:
                 f"Estado alquiler: {'Activo' if self.alquiler.activo else 'Finalizado'}\n"
                 f"TOTAL: {self.total:.2f} €\n"
                 f"============================\n")
+
+    def guardar_factura_txt(self) -> str:
+        """
+        Guarda la factura en un fichero de texto.
+
+        Returns
+        -------
+        str
+            Nombre del archivo generado.
+        """
+        nombre_archivo = f"factura_{self.alquiler.reserva.id}.txt"
+
+        with open(nombre_archivo, "w", encoding="utf-8") as f:
+            f.write(str(self))
+
+        return nombre_archivo
         

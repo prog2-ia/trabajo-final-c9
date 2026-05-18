@@ -3,6 +3,7 @@ from .reserva import Reserva
 from .alquiler import Alquiler
 from .factura import Factura
 from personas.empleado import Empleado
+import pickle
 
 class SistemaAlquiler:
     """
@@ -181,3 +182,11 @@ class SistemaAlquiler:
  
     def listar_empleados(self):
         return self._empleados
+    
+    def guardar_sistema(self, archivo="sistema.dat"):
+        with open(archivo, "wb") as f:
+            pickle.dump(self, f)
+
+    def guardar_sistema(self, archivo="sistema.dat"):
+        with open(archivo, "wb") as f:
+            pickle.dump(self, f)

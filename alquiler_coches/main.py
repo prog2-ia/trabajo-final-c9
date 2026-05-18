@@ -1,28 +1,31 @@
 from personas import Cliente, Empleado
 from vehiculos import Turismo, Electrico, Furgoneta
 from gestion_alquileres import Tarifa, Seguro, SistemaAlquiler
+import os 
 
 def main():
-    sistema = SistemaAlquiler()
-
-    # Catálogo por defecto
-    t1 = Tarifa(50.0, 0.20, 30.0)
-    t2 = Tarifa(80.0, 0.30, 50.0)
-    t3 = Tarifa(60.0, 0.10, 25.0)
-    t4 = Tarifa(45.0, 0.15, 20.0)
-    t5 = Tarifa(70.0, 0.25, 40.0)
-    sistema.agregar_vehiculo(Turismo("1234ABC", "Seat", "Ibiza", t1, "Rojo", 5, "gasolina", "Bueno", 5))
-    sistema.agregar_vehiculo(Turismo("5678DEF", "Toyota", "Corolla", t1, "Blanco", 4, "gasolina", "Excelente", 5))
-    sistema.agregar_vehiculo(Furgoneta("9012GHI", "Mercedes", "Sprinter", t2, "Blanco", 3, "diesel", "Bueno", 9))
-    sistema.agregar_vehiculo(Electrico("3456JKL", "Tesla", "Model 3", t3, "Negro", 4, "Nuevo", 5, 75.0, 500, 8.0))
-    sistema.agregar_vehiculo(Turismo("7890MNO", "Volkswagen", "Golf", t4, "Gris", 4, "diesel", "Excelente", 5))
-    sistema.agregar_vehiculo(Furgoneta("2345PQR", "Ford", "Transit", t5, "Blanco", 3, "diesel", "Bueno", 8))
-    sistema.agregar_vehiculo(Electrico("6789STU", "Peugeot", "e-208", t3, "Azul", 4, "Nuevo", 5, 50.0, 340, 7.5))
-    sistema.agregar_vehiculo(Turismo("1122VWX", "BMW", "Serie 1", t5, "Negro", 4, "gasolina", "Excelente", 5))
-    sistema.registrar_cliente(Cliente("María García", "12345678A", "maria@gmail.com", "15/05/1990", "46000", "600111222"))
-    sistema.registrar_cliente(Cliente("Carlos López", "87654321B", "carlos@gmail.com", "22/03/1985", "28001", "611333444"))
-    sistema.registrar_cliente(Cliente("Laura Martínez", "11223344C", "laura@gmail.com", "07/09/1995", "08001", "622555666"))
-    
+    if os.path.exists("sistema.dat"):
+        sistema = SistemaAlquiler.cargar_sistema()
+    else:
+        sistema = SistemaAlquiler()
+        # Catálogo por defecto
+        t1 = Tarifa(50.0, 0.20, 30.0)
+        t2 = Tarifa(80.0, 0.30, 50.0)
+        t3 = Tarifa(60.0, 0.10, 25.0)
+        t4 = Tarifa(45.0, 0.15, 20.0)
+        t5 = Tarifa(70.0, 0.25, 40.0)
+        sistema.agregar_vehiculo(Turismo("1234ABC", "Seat", "Ibiza", t1, "Rojo", 5, "gasolina", "Bueno", 5))
+        sistema.agregar_vehiculo(Turismo("5678DEF", "Toyota", "Corolla", t1, "Blanco", 4, "gasolina", "Excelente", 5))
+        sistema.agregar_vehiculo(Furgoneta("9012GHI", "Mercedes", "Sprinter", t2, "Blanco", 3, "diesel", "Bueno", 9))
+        sistema.agregar_vehiculo(Electrico("3456JKL", "Tesla", "Model 3", t3, "Negro", 4, "Nuevo", 5, 75.0, 500, 8.0))
+        sistema.agregar_vehiculo(Turismo("7890MNO", "Volkswagen", "Golf", t4, "Gris", 4, "diesel", "Excelente", 5))
+        sistema.agregar_vehiculo(Furgoneta("2345PQR", "Ford", "Transit", t5, "Blanco", 3, "diesel", "Bueno", 8))
+        sistema.agregar_vehiculo(Electrico("6789STU", "Peugeot", "e-208", t3, "Azul", 4, "Nuevo", 5, 50.0, 340, 7.5))
+        sistema.agregar_vehiculo(Turismo("1122VWX", "BMW", "Serie 1", t5, "Negro", 4, "gasolina", "Excelente", 5))
+        sistema.registrar_cliente(Cliente("María García", "12345678A", "maria@gmail.com", "15/05/1990", "46000", "600111222"))
+        sistema.registrar_cliente(Cliente("Carlos López", "87654321B", "carlos@gmail.com", "22/03/1985", "28001", "611333444"))
+        sistema.registrar_cliente(Cliente("Laura Martínez", "11223344C", "laura@gmail.com", "07/09/1995", "08001", "622555666"))
+        
     while True:
         print("\n--- MENÚ PRINCIPAL---")
         print("1. Registrar cliente")
@@ -38,7 +41,8 @@ def main():
         print("11. Ver clientes")
         print("12. Gestionar empleados")
         print("13. Ver ingresos totales")
-        print("14. Salir")
+        print("14. Guardar sistema")
+        print("15. Salir")
 
         opcion = input("Elige una opción: ").strip()
         print()
@@ -249,6 +253,8 @@ def main():
             factura = sistema.finalizar_alquiler(alquiler_elegido)
             print("\nAlquiler finalizado. Factura:")
             print(factura)
+            archivo = factura.guardar_factura_txt()
+            print(f"Factura guardada en {archivo}")
 
         # 8. VER VEHÍCULOS DISPONIBLES 
         elif opcion == "8":
@@ -259,7 +265,7 @@ def main():
                 for i, v in enumerate(disponibles):
                     print(f"VEHÍCULO {i+1}")
                     print(v)
-
+        
         # 9. VER INVENTARIO COMPLETO
         elif opcion == "9":
             todos = sistema._inventario.vehiculos
@@ -344,8 +350,13 @@ def main():
                     print(f"Cliente: {a.reserva.cliente.nombre} | Vehículo: {a.reserva.vehiculo.matricula} | {subtotal:.2f} €")
                 print(f"\nTOTAL INGRESOS: {total:.2f} €")
         
-        # 14. SALIR 
+        # 14. GUARDAR SISTEMA
         elif opcion == "14":
+            sistema.guardar_sistema()
+            print("Sistema guardado correctamente")
+
+        # 15. SALIR 
+        elif opcion == "15":
             print("Saliendo...")
             break
 
