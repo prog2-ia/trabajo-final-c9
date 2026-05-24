@@ -186,7 +186,8 @@ class SistemaAlquiler:
     def guardar_sistema(self, archivo="sistema.dat"):
         with open(archivo, "wb") as f:
             pickle.dump(self, f)
-
-    def guardar_sistema(self, archivo="sistema.dat"):
-        with open(archivo, "wb") as f:
-            pickle.dump(self, f)
+    
+    @staticmethod
+    def cargar_sistema(archivo="sistema.dat"):
+        with open(archivo, "rb") as f:
+            return pickle.load(f)
