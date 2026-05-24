@@ -1,0 +1,14 @@
+========== FACTURA ==========
+--- RESERVA ---
+Cliente: María García
+Vehículo: 1234ABC
+Días: 3
+Estado: Cancelada
+Id: 0
+--- SEGURO ---
+Tipo: Estándar
+Precio/día: 10.0
+
+Estado alquiler: Finalizado
+TOTAL: 180.00 €
+============================

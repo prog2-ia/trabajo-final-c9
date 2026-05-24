@@ -1,6 +1,11 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 from .persona import Persona
-from gestion_alquileres.alquiler import Alquiler
 from datetime import date
+
+if TYPE_CHECKING:
+    from gestion_alquileres.alquiler import Alquiler
 
 class Cliente(Persona):
     """

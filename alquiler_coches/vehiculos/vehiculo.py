@@ -1,5 +1,10 @@
+from __future__ import annotations
+
 from abc import ABC
-from gestion_alquileres.tarifa import Tarifa
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from gestion_alquileres.tarifa import Tarifa
 
 class Vehiculo(ABC):
     """
@@ -109,8 +114,8 @@ class Vehiculo(ABC):
         """
         Establece que la tarifa obtenida ser un objeto de la clase Tarifa
         """
-        if not isinstance(nueva_tarifa, Tarifa):
-            raise ValueError("Debe ser una instancia de Tarifa")
+        if nueva_tarifa is None:
+            raise ValueError("La tarifa no puede ser None")
         self._tarifa = nueva_tarifa
 
     @property
