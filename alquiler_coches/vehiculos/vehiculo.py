@@ -64,6 +64,7 @@ class Vehiculo(ABC):
         self.modelo = modelo
         self.tarifa = tarifa
         self.color = color
+        self.plazas: int
         self._disponible = True
 
     @property

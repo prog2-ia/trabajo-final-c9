@@ -1,9 +1,18 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING, Optional
+import pickle
+
 from .inventario import Inventario
 from .reserva import Reserva
 from .alquiler import Alquiler
 from .factura import Factura
 from personas.empleado import Empleado
-import pickle
+
+
+if TYPE_CHECKING:
+    from personas.cliente import Cliente
+    from vehiculos.vehiculo import Vehiculo
+    from gestion_alquileres.seguro import Seguro
 
 class SistemaAlquiler:
     """
@@ -74,26 +83,26 @@ class SistemaAlquiler:
             Devuelve la lista de empleados 
         """
 
-    def __init__(self):
-        self._clientes = []
-        self._empleados=[]
-        self._reservas = []
-        self._alquileres = []
-        self._inventario = Inventario()
+    def __init__(self) -> None:
+        self._clientes: list = []
+        self._empleados:list[Empleado] =[]
+        self._reservas: list[Reserva] = []
+        self._alquileres: list[Alquiler] = []
+        self._inventario: Inventario = Inventario()
 
-    def registrar_cliente(self, cliente):
+    def registrar_cliente(self, cliente: Cliente) -> None:
         for c in self._clientes:
             if c.dni == cliente.dni:
                 raise ValueError("Ya existe un cliente con ese DNI")
         self._clientes.append(cliente)
 
-    def agregar_vehiculo(self, vehiculo):
+    def agregar_vehiculo(self, vehiculo: Vehiculo) -> None:
         for v in self._inventario.vehiculos:
             if v.matricula == vehiculo.matricula:
                 raise ValueError("Ya existe un vehículo con esa matrícula")
         self._inventario.agregar_vehiculo(vehiculo)
 
-    def eliminar_vehiculo(self, matricula):
+    def eliminar_vehiculo(self, matricula: str) -> bool:
         vehiculo = self._inventario.buscar_por_matricula(matricula)
         if vehiculo is None:
             return False
@@ -101,7 +110,7 @@ class SistemaAlquiler:
             raise ValueError("No se puede eliminar un vehículo que está alquilado")
         return self._inventario.eliminar_vehiculo(matricula)
     
-    def buscar_vehiculos(self, tipo=None, plazas=None, combustible=None):
+    def buscar_vehiculos(self, tipo=None, plazas=None, combustible=None) -> list:
         resultado = []
         for v in self._inventario.lista_disponible():
             if tipo and type(v).__name__.lower() != tipo:
@@ -113,19 +122,19 @@ class SistemaAlquiler:
             resultado.append(v)
         return resultado
     
-    def crear_reserva(self, cliente, vehiculo, dias):
+    def crear_reserva(self, cliente: Cliente, vehiculo: Vehiculo, dias: int) -> Reserva:
         if not vehiculo.disponible:
             raise ValueError("El vehículo no está disponible")
         reserva = Reserva(cliente, vehiculo, dias)
         self._reservas.append(reserva)
         return reserva
 
-    def cancelar_reserva(self, reserva):
+    def cancelar_reserva(self, reserva: Reserva) -> bool:
         if reserva in self._reservas:
             return reserva.cancelar_reserva()
         return False
 
-    def iniciar_alquiler(self, reserva, seguro):
+    def iniciar_alquiler(self, reserva: Reserva, seguro: Seguro) -> Alquiler:
         if not reserva.activa:
             raise ValueError("La reserva no está activa")
  
@@ -144,7 +153,7 @@ class SistemaAlquiler:
  
         return alquiler
 
-    def finalizar_alquiler(self, alquiler):
+    def finalizar_alquiler(self, alquiler: Alquiler) -> Optional[Factura]:
         if alquiler not in self._alquileres:
             return None
         alquiler.finalizar()
@@ -152,38 +161,38 @@ class SistemaAlquiler:
         factura.generar_total()
         return factura
 
-    def vehiculos_disponibles(self):
+    def vehiculos_disponibles(self) -> list:
         return self._inventario.lista_disponible()
 
-    def listar_clientes(self):
+    def listar_clientes(self) -> list:
         return self._clientes
 
-    def listar_reservas(self):
+    def listar_reservas(self) -> list:
         return self._reservas
 
-    def listar_alquileres(self):
+    def listar_alquileres(self) -> list:
         return self._alquileres
     
-    def reservas_activas(self):
+    def reservas_activas(self) -> list:
         return [r for r in self._reservas if r.activa]
     
-    def registrar_empleado(self, empleado):
+    def registrar_empleado(self, empleado: Empleado) -> None:
         for e in self._empleados:
             if e.dni == empleado.dni:
                 raise ValueError("Ya existe un empleado con ese DNI")
         self._empleados.append(empleado)
  
-    def eliminar_empleado(self, dni):
+    def eliminar_empleado(self, dni: str) -> bool:
         for e in self._empleados:
             if e.dni == dni:
                 self._empleados.remove(e)
                 return True
         return False
  
-    def listar_empleados(self):
+    def listar_empleados(self) -> list:
         return self._empleados
     
-    def guardar_sistema(self, archivo="sistema.dat"):
+    def guardar_sistema(self, archivo="sistema.dat") -> None:
         with open(archivo, "wb") as f:
             pickle.dump(self, f)
     
